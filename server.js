@@ -6,6 +6,10 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
+app.use(cors({
+  origin: 'https://insignyx.com/', // or '*' for all origins (for testing only)
+  credentials: true,
+}));
 
 // Middleware
 app.use(cors());
