@@ -12,6 +12,7 @@ const app = express();
 app.use(cors(
     {
   origin: 'https://insignyx.com/', // or '*' for all origins (for testing only)
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }
 ));
