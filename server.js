@@ -6,13 +6,20 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const app = express();
-app.use(cors({
-  origin: 'https://insignyx.com/', // or '*' for all origins (for testing only)
-  credentials: true,
-}));
+
 
 // Middleware
-app.use(cors());
+app.use(cors(
+    {
+  origin: 'https://insignyx.com/', // or '*' for all origins (for testing only)
+  credentials: true,
+}
+));
+
+app.use((req, res, next) => {
+  res.setHeader("Content-Security-Policy", "default-src 'self'; img-src 'self' https://backend-of-the-igsignyx.onrender.com;");
+  next();
+});
 app.use(express.json());
 
 // MongoDB Connection
