@@ -11,16 +11,15 @@ const app = express();
 // Middleware
 app.use(cors(
     {
-  origin: 'https://insignyx.com/', // or '*' for all origins (for testing only)
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true,
-}
+       origin: 'https://insignyx.com',
+//        methods: ['GET', 'POST'],   
+  }
 ));
 
-app.use((req, res, next) => {
-  res.setHeader("Content-Security-Policy", "default-src 'self'; img-src 'self' https://backend-of-the-igsignyx.onrender.com;");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader("Content-Security-Policy", "default-src 'self'; img-src 'self' https://backend-of-the-igsignyx.onrender.com;");
+//   next();
+// });
 app.use(express.json());
 
 // MongoDB Connection
