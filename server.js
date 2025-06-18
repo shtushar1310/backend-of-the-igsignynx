@@ -9,13 +9,20 @@ const app = express();
 
 
 // Middleware
-app.use(cors(
-    {
-       origin: 'https://insignyx.com',
-//        methods: ['GET', 'POST'],   
-  }
-));
+// app.use(cors(
+//     {
+//        origin: 'https://insignyx.com',
+// //        methods: ['GET', 'POST'],   
+//   }
+// ));
 
+app.use(cors({
+  origin: 'https://insignyx.com',
+  methods: ['GET', 'POST', 'OPTIONS'], // ensure OPTIONS is included
+  credentials: true // if you're sending cookies or auth headers
+}));
+
+app.options('*', cors());
 // app.use((req, res, next) => {
 //   res.setHeader("Content-Security-Policy", "default-src 'self'; img-src 'self' https://backend-of-the-igsignyx.onrender.com;");
 //   next();
