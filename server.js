@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const db= require('./db'); // Assuming you have a db.js file for MongoDB connection
 
 dotenv.config();
 
@@ -17,7 +18,7 @@ const app = express();
 // ));
 
 app.use(cors({
-  origin: 'https://insignyx.com',
+  origin: '*',
   methods: ['GET', 'POST', 'OPTIONS'], // ensure OPTIONS is included
   credentials: true // if you're sending cookies or auth headers
 }));
@@ -29,13 +30,8 @@ app.options('*', cors());
 // });
 app.use(express.json());
 
-// MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
-.then(() => console.log('Connected to MongoDB'))
-.catch((err) => console.error('MongoDB connection error:', err));
+
+
 
 // Routes
 const contactRoutes = require('./routes/contact');
