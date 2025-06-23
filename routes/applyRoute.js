@@ -26,7 +26,7 @@ const upload=multer({storage:storage})
 
 
 
-router.post('/apply',upload.single('pdf'),async(req,res)=>{
+router.post('/apply',upload.single('resume'),async(req,res)=>{
     try{
 
         const {name,course,skills,resume}=req.body;
