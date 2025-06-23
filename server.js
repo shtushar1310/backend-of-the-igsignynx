@@ -2,11 +2,13 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const dotenv = require('dotenv');
+const bodyParser=require('body-parser')
 const db= require('./db'); // Assuming you have a db.js file for MongoDB connection
 
 dotenv.config();
 
-const app = express();
+const app = express(bodyParser);
+
 
 
 // Middleware
@@ -36,6 +38,12 @@ app.use(express.json());
 // Routes
 const contactRoutes = require('./routes/contact');
 app.use('/api/contact', contactRoutes);
+
+
+//importing the apply route
+const applyRoute=require('./routes/applyRoute');
+app.use('/',applyRoute);
+
 
 // Start server
 const PORT = process.env.PORT || 5000;
